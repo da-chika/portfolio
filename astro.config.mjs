@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://da-chika.github.io',
+  base: '/portfolio',
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],

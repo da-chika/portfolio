@@ -1,0 +1,105 @@
+---
+import "../styles/global.css";
+import { PortfolioApp } from "../components/portfolio/PortfolioApp";
+import { projects } from "../data/projects";
+
+const skills = [
+  { label: "Frontend", items: ["TypeScript", "React", "Next.js", "Vue.js", "Svelte"] },
+  { label: "Mobile", items: ["Flutter", "React Native"] },
+  { label: "Backend", items: ["Laravel", "Hono", "Express", "FastAPI"] },
+  { label: "Infra", items: ["AWS", "GCP", "Vercel", "Supabase", "Docker"] },
+  { label: "DB", items: ["MySQL", "PostgreSQL", "DynamoDB"] },
+  { label: "Design", items: ["Figma"] },
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Portfolio | フルスタックエンジニア</title>
+    <meta name="description" content="Web・モバイルアプリ開発のフルスタックエンジニアのポートフォリオ" />
+  </head>
+  <body class="min-h-screen">
+    <div class="mesh-gradient min-h-screen">
+
+      <!-- ヘッダー -->
+      <header class="border-b border-white/6 px-6 py-4">
+        <div class="mx-auto flex max-w-6xl items-center justify-between">
+          <span class="text-sm font-medium tracking-widest text-white/40 uppercase">Portfolio</span>
+          <div class="flex items-center gap-4">
+            <a
+              href="https://crowdworks.jp"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="rounded-full border border-white/10 px-4 py-1.5 text-xs text-white/50 transition-all hover:border-white/25 hover:text-white/80"
+            >
+              クラウドワークスで依頼する →
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main class="mx-auto max-w-6xl px-6 pb-24 pt-20">
+
+        <!-- ヒーローセクション -->
+        <section class="mb-20">
+          <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/8 px-3 py-1 text-xs text-emerald-400">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            受注可能
+          </div>
+          <h1 class="mb-4 text-4xl font-bold tracking-tight text-white/90 sm:text-5xl">
+            フルスタック<br class="sm:hidden" />エンジニア
+          </h1>
+          <p class="mb-8 max-w-xl text-base leading-relaxed text-white/50">
+            要件定義からUI設計・フロントエンド・バックエンド・インフラまで、
+            Web・モバイルアプリ開発の全工程を一人で対応できます。
+            実務経験4年、業種を問わず対応可能です。
+          </p>
+
+          <!-- スキルスタック -->
+          <div class="space-y-2.5">
+            {skills.map((group) => (
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 w-20 shrink-0 text-xs text-white/25">{group.label}</span>
+                <div class="flex flex-wrap gap-1.5">
+                  {group.items.map((item) => (
+                    <span class="rounded-md border border-white/8 bg-white/4 px-2 py-0.5 text-xs text-white/60">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- 実績セクション -->
+        <section>
+          <div class="mb-8 flex items-end justify-between">
+            <div>
+              <h2 class="text-xl font-semibold text-white/90">実績</h2>
+              <p class="mt-1 text-sm text-white/35">
+                {projects.length}件の開発実績
+              </p>
+            </div>
+          </div>
+
+          <!-- フィルター + グリッド（React island） -->
+          <PortfolioApp client:load />
+        </section>
+
+      </main>
+
+      <!-- フッター -->
+      <footer class="border-t border-white/6 px-6 py-8">
+        <div class="mx-auto max-w-6xl text-center text-xs text-white/25">
+          フリーランス・フルスタックエンジニア
+        </div>
+      </footer>
+
+    </div>
+  </body>
+</html>
